@@ -5,8 +5,11 @@ package com.laboiteaprog.thymeleaf.model;
  * @author Marc Collin
  */
 public class User {
+
     private String firstname;
     private String lastname;
+
+    private String userTypeId;
 
     /**
      * @return the firstname
@@ -35,4 +38,19 @@ public class User {
     public void setLastname(String lastname) {
         this.lastname = lastname;
     }
+
+    /**
+     * @return the userTypeId
+     */
+    public String getUserTypeId() {
+        return userTypeId;
+    }
+
+    /**
+     * @param userTypeId the userTypeId to set
+     */
+    public void setUserTypeId(String userTypeId) {
+        this.userTypeId = userTypeId;
+    }
+
 }

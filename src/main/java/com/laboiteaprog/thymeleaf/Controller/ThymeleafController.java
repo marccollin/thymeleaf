@@ -1,6 +1,9 @@
 package com.laboiteaprog.thymeleaf.Controller;
 
 import com.laboiteaprog.thymeleaf.model.User;
+import com.laboiteaprog.thymeleaf.model.UserType;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,11 +30,31 @@ public class ThymeleafController {
     @GetMapping(value = {"/userform"})
     public String getUserForm(Model model) {
 
-        model.addAttribute("user", new User());
+        List<UserType> userTypes = new ArrayList<>();
+        
+        UserType userType1 = new UserType();
+        userType1.setId(1l);
+        userType1.setType("Admin");
+        
+        UserType userType2 = new UserType();
+        userType2.setId(2l);
+        userType2.setType("Standard");
+        
+        UserType userType3 = new UserType();
+        userType3.setId(3l);
+        userType3.setType("Invité");
 
+        model.addAttribute("user", new User());
+        model.addAttribute("userTypes", userTypes);
+
+        userTypes.add(userType1);
+        userTypes.add(userType2);
+        userTypes.add(userType3);
+                
+        
         return "formuser";
     }
-    
+
     @GetMapping(value = {"/userformrest"})
     public String getUserFormRest(Model model) {
 
@@ -52,7 +75,7 @@ public class ThymeleafController {
     public ResponseEntity savUserFormRest(@RequestBody User user) {
 
         //do want you want with value
-       return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }

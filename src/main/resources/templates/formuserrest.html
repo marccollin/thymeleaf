@@ -8,27 +8,27 @@
 
         <div id="main" class="container-fluid">
 
-            <form action="#" th:action="@{/userform}" th:object="${user}" method="post">
+            <form id="form">
 
                 <div class="form-group row">
                     <label for="firstname" class="col-sm-2 col-form-label" >Prénom</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="firstname" th:placeholder="#{user.firstname.placeholder}" th:field="*{firstname}" />
+                        <input type="text" class="form-control" id="firstname" th:placeholder="#{user.firstname.placeholder}"  />
                     </div>
                 </div>
 
                 <div class="form-group row">
                     <label for="lastname" class="col-sm-2 col-form-label" >Nom</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lastname" th:placeholder="#{user.lastname.placeholder}" th:field="*{lastname}" />
+                        <input type="text" class="form-control" id="lastname" th:placeholder="#{user.lastname.placeholder}"  />
                     </div>
                 </div>
-                
+
                 <div class="form-group">
                     <div class="col-sm-12">
                         <div class="float-right">
-                            <button type="submit" class="btn btn-primary">Sauvegarder</button>
-                            <button type="button" id="resetButton" class="btn btn-primary">Reset</button>
+                            <button type="button" class="btn btn-primary" onclick="saveForm()" >Sauvegarder</button>
+                            <button type="button" class="btn btn-primary">Reset</button>
                         </div>
                     </div>
                 </div>
@@ -36,6 +36,40 @@
             </form>
 
         </div>
+
+        <script type="text/javascript">
+            debugger;
+            function toJSONString( form ) {
+		var obj = {};
+		var elements = form.querySelectorAll( "input, select, textarea" );
+		for( var i = 0; i < elements.length; ++i ) {
+                    var element = elements[i];
+                    var id = element.id;
+                    var value = element.value;
+
+                    if( id ) {
+                        obj[ id ] = value;
+                    }
+		}
+
+		return JSON.stringify( obj );
+            }
+
+            function saveForm() {
+                var XHR = new XMLHttpRequest();
+                XHR.open('POST', 'http://localhost:8080/userformrest');
+                XHR.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                //JSON.stringify();
+
+                var formElement = document.querySelector("form");
+                
+                var json = toJSONString(formElement);
+                
+                var formData = new FormData(formElement);
+
+                XHR.send(json);
+            }
+        </script>    
 
     </body>
 </html>
