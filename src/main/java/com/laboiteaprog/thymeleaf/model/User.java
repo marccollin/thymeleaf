@@ -9,6 +9,8 @@ public class User {
     private String firstname;
     private String lastname;
 
+    private boolean enabled;
+    
     private String userTypeId;
 
     /**
@@ -53,4 +55,25 @@ public class User {
         this.userTypeId = userTypeId;
     }
 
+    /**
+     * @return the enabled
+     */
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    /**
+     * @param enabled the enabled to set
+     */
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" + "firstname=" + firstname + ", lastname=" + lastname + ", enabled=" + enabled + ", userTypeId=" + userTypeId + '}';
+    }
+
+    
+    
 }
