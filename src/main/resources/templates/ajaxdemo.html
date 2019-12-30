@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head th:include="fragments/head :: HeadCss"/>
+    <body>
+        <div th:replace="fragments/top-menu :: TopMenu('user')"/>
+
+        <h3>Demo ajax</h3>
+
+        <button onclick="getAjaxFragment()" type="button">Obtenir un fragment ajax</button>
+
+        <div id="main" class="container-fluid">
+
+        </div>
+
+        <script type="text/javascript">
+
+            function getAjaxFragment(){
+                
+                var XHR = new XMLHttpRequest();
+                XHR.open('get', '/ajaxfragment');
+                XHR.send();
+
+                XHR.addEventListener('readystatechange', function() {
+                    if (XHR.readyState === XMLHttpRequest.DONE && XHR.status === 200) {
+                        document.getElementById("main").innerHTML = XHR.responseText;
+                    }
+                });
+                
+            }
+
+        </script>
+
+    </body>
+</html>

@@ -10,8 +10,17 @@ public class User {
     private String lastname;
 
     private boolean enabled;
-    
+
     private String userTypeId;
+
+    public User() {
+
+    }
+
+    public User(String firstname, String lastname) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 
     /**
      * @return the firstname
@@ -74,6 +83,4 @@ public class User {
         return "User{" + "firstname=" + firstname + ", lastname=" + lastname + ", enabled=" + enabled + ", userTypeId=" + userTypeId + '}';
     }
 
-    
-    
 }

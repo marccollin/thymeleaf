@@ -27,6 +27,25 @@ public class ThymeleafController {
         return "index";
     }
 
+    @GetMapping(value = {"/ajaxfragment"})
+    public String getAjaxFragment(Model model) {
+
+        List<User> users = new ArrayList<>();
+
+        users.add(new User("Yvan", "Dubois"));
+        users.add(new User("Yvon", "Couler"));
+        users.add(new User("Ytord", "Lamope"));
+
+        model.addAttribute("users", users);
+
+        return "fragments/ajax::Ajax";
+    }
+
+    @GetMapping(value = {"/ajaxdemo"})
+    public String getAjaxDemo() {
+        return "ajaxdemo";
+    }
+
     @GetMapping(value = {"/userform"})
     public String getUserForm(Model model) {
 
