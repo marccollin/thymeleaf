@@ -1,0 +1,29 @@
+<html th:lang="${#locale.language}">
+    <head>
+        <title>Ajax fragment</title>
+        <style>
+
+            @page
+            {
+                size: letter portrait;
+            }
+
+            .new-page{
+                page-break-after:always;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div th:fragment="Ajax">
+
+            <h3>Liste d'utilisateur</h3>
+            <table class="table">
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.firstname}" />
+                    <td th:text="${user.lastname}" />
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
